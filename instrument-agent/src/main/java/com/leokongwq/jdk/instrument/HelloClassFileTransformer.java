@@ -30,12 +30,12 @@ public class HelloClassFileTransformer implements ClassFileTransformer {
      */
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
-        System.out.println("transform classloader: " + loader);
-        System.out.println(className);
-        System.out.println("classBeingRedefined " + classBeingRedefined);
         if (!className.equals("com/leokongwq/jdk/instrument/Cat")) {
             return null;
         }
+        System.out.println("transform classloader: " + loader);
+        System.out.println(className);
+        System.out.println("classBeingRedefined " + classBeingRedefined);
         return getBytesFromFile(CLASS_NAME_FOR_TRANSFORM);
     }
 

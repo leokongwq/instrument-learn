@@ -13,5 +13,9 @@ public class HelloAgent {
         Cat cat = new Cat();
         cat.eat("milk");
         System.out.println("=============================================");
+
+        MyStringBuilder myStringBuilder = new MyStringBuilder();
+        System.out.println(myStringBuilder.buildString(10));
+        myStringBuilder.buildAndPrintString(10);
     }
 }

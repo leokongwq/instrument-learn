@@ -28,6 +28,16 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.bcel</groupId>
+            <artifactId>bcel</artifactId>
+            <version>6.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.25.0-GA</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -45,7 +55,7 @@
            <plugin>
                <artifactId>maven-assembly-plugin</artifactId>
                <configuration>
-                   <outputDirectory>${basedir}</outputDirectory>
+                   <outputDirectory>${project.basedir}</outputDirectory>
                    <archive>
                        <index>true</index>
                        <manifest>
