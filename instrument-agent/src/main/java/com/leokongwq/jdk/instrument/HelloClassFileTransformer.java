@@ -19,7 +19,15 @@ public class HelloClassFileTransformer implements ClassFileTransformer {
     private static final String CLASS_NAME_FOR_TRANSFORM = "D:\\Cat.class.2";
 
     /**
-     *
+     * 什么时候被调用呢？
+     * 1. the transformer will be called for every new class definition and every class redefinition.
+     *  也就是每个类第一次被 define 或 redefine
+     *  第一次define 发生在类被加载的时候 -> ClassLoader.defineClass  或 等价的本地方法
+     *  redefine 可以通过 Instrumentation.redefineClasses 或 等价的本地方法
+     * 2. Retransformation capable transformers will also be called on every class retransformation.
+     *   如果这个ClassTransformer 支持 retransform 那么，当每个类被 retransformation 的时候 也会被调用。
+     *   retransformation 可以通过 Instrumentation.retransformClasses 或 等价的本地方法 来调用触发
+     * 3. ClassFileTransformer.transform 的执行时在 class 类的字节数组 verified or applied 之前。
      * @param loader 被转换类的类加载器, 如果是BootstrapClassLoader 那么该参数为null
      * @param className className 的格式类似 java/lang/Shutdown
      * @param classBeingRedefined 如果是被 redefine (Instrumentation.redefineClasses) 或 retransform (Instrumentation.retransformClasses)触发的类转换，

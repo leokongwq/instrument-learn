@@ -1,7 +1,9 @@
 package com.leokongwq.jdk.instrument;
 
 import java.lang.instrument.Instrumentation;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -25,14 +27,22 @@ public class FrogAgent {
         ins.addTransformer(new ProfileTransformer(methods));
     }
 
-//    /**
-//     *  low priority
-//     */
-//    public static void premain(String agentArgs) {
-//
-//    }
-//
-//    public static void agentmain() {
-//
-//    }
+    /**
+     *  low priority
+     */
+    public static void premain(String agentArgs) {
+
+    }
+
+    public static void agentmain(String agentArgs) {
+
+    }
+
+    public static void agentmain(String agentArgs, Instrumentation ins) throws Exception {
+        //可以顺序添加多个transformer; 强烈建议同一个transformer不要添加多次
+        Set<String> methods = new HashSet<>();
+        methods.add("nextDouble");
+        ins.addTransformer(new ProfileTransformer(methods), true);
+//        ins.retransformClasses(Random.class);
+    }
 }

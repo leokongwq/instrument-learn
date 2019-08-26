@@ -1,4 +1,6 @@
 Manifest-Version: 1.0
 Premain-Class: com.leokongwq.jdk.instrument.FrogAgent
+Agent-Class: com.leokongwq.jdk.instrument.FrogAgent
 Can-Redefine-Classes: true
+Can-Retransform-Classes: true
 Boot-Class-Path: javassist-3.25.0-GA.jar

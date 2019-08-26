@@ -11,7 +11,7 @@
     <artifactId>instrument-app</artifactId>
     <packaging>jar</packaging>
     <!-- TODO project name  -->
-    <name>quickstart</name>
+    <name>instrument-app</name>
     <description></description>
 
     <dependencies>

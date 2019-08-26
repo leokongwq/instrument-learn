@@ -20,12 +20,19 @@ public class ProfileTransformer implements ClassFileTransformer {
 
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
-        if (!className.equals("com/leokongwq/jdk/instrument/MyStringBuilder")) {
+//        if (!className.equals("com/leokongwq/jdk/instrument/MyStringBuilder")) {
+//            return null;
+//        }
+        if (!className.equals("java/util/Random")) {
             return null;
         }
         try {
             //用于取得字节码类，必须在当前的classpath中，使用全称
-            CtClass ctClass = ClassPool.getDefault().get("com.leokongwq.jdk.instrument.MyStringBuilder");
+            //CtClass ctClass = ClassPool.getDefault().get("com.leokongwq.jdk.instrument.MyStringBuilder");
+            CtClass ctClass = ClassPool.getDefault().get("java.util.Random");
+            if (ctClass.isFrozen()) {
+                return null;
+            }
             for (CtMethod ctMethod : ctClass.getMethods()) {
                 //需要修改的方法名称
                 if (enhanceMethodNames.contains(ctMethod.getName())) {
